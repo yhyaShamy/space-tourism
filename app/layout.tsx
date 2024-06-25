@@ -26,13 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="xl:overflow-y-hidden overflow-x-hidden ">
+    <html lang="en" className=" overflow-x-hidden ">
       <body
-        className={`${barlow.className} text-[18px] leading-[180%] text-white pt-1 sm:pt-0 xl:pt-1  relative lg:h-screen lg:flex lg:flex-col`}
+        className={`${barlow.className} text-[18px] leading-[180%] text-white pt-1 sm:pt-0 xl:pt-1  relative md:h-screen flex flex-col overflow-hidden`}
       >
         <BgImg />
         <NavBar />
-        <main className="lg:flex lg:items-center h-full">{children}</main>
+        <main className="flex items-center h-[90%] sm:h-[80%] w-full">
+          {children}
+        </main>
       </body>
     </html>
   );

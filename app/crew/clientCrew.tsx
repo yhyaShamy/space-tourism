@@ -38,8 +38,8 @@ export default function ClientCrew({ membersData }: membersDataProps) {
 
   return (
     <>
-      <div className="grid md:grid-cols-[50%,1fr] md:pb-12 gap-12 xl:gap-0 ">
-        <div className="flex flex-col justify-center relative gap-12 md:gap-0 sm:h-[58dvh]">
+      <div className="h-[100vh] sm:h-[80vh] grid md:grid-cols-[50%,1fr] md:pb-12 gap-12 xl:gap-0">
+        <div className="flex flex-col justify-center relative gap-12 md:gap-0">
           <div className="flex flex-col gap-6 myGridEle">
             <typography.HeaderS style="text-gray-400">
               {crewMember.role}
@@ -53,7 +53,7 @@ export default function ClientCrew({ membersData }: membersDataProps) {
           </ul>
         </div>
 
-        <picture className="justify-self-end self-start myGridEle mx-auto">
+        <picture className="justify-self-end self-start myGridEle mx-auto w-[80%] sm:w-auto">
           <Image
             src={crewMember.images.webp}
             alt={crewMember.name}

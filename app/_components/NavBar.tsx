@@ -57,7 +57,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="relative mx-auto mt-4 sm:mt-0 grid h-28 w-11/12 grid-cols-2 items-center justify-between bg-transparent sm:mx-0 sm:w-full sm:grid-cols-[15%,1fr]  lg:grid-cols-[1fr,1fr] xl:mt-12">
+      <nav className="relative mx-auto mt-4 sm:mt-0 grid h-[10%]  sm:h-[15%] w-11/12 grid-cols-2 items-center justify-between bg-transparent sm:mx-0 sm:w-full sm:grid-cols-[15%,1fr]  lg:grid-cols-[1fr,1fr] xl:mt-12">
         <picture className="sm:mx-auto lg:mx-0 lg:px-8">
           <Image src={logo} alt="space-tourism" className="xl:ms-4"></Image>
         </picture>
