@@ -36,7 +36,7 @@ export const HeaderL: React.FC<MyComponentProps> = ({ children, style }) => {
 };
 
 export const HeaderM: React.FC<MyComponentProps> = ({ children, style }) => {
-  const className = `text-[2.9rem] sm:text-[2.6rem] md:text-[2.8rem] xl:text-[3.5rem] leading-[-64.2%] tracking-normal ${style} ${bellefair.className} uppercase`;
+  const className = `text-[2rem] sm:text-[2.6rem] md:text-[2.8rem] xl:text-[3.5rem] leading-[-64.2%] tracking-normal ${style} ${bellefair.className} uppercase`;
   return <h2 className={className}>{children}</h2>;
 };
 

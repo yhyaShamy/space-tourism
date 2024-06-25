@@ -19,7 +19,7 @@ import technologyDesktop from "../../public/assets/technology/background-technol
 import technologyTablet from "../../public/assets/technology/background-technology-tablet.jpg";
 import technologyMobile from "../../public/assets/technology/background-technology-mobile.jpg";
 
-export default function BgImg() {
+export default function Background() {
   // Get current page imgs
 
   const { currentPage } = useCurrentPage();
@@ -69,7 +69,8 @@ export default function BgImg() {
       );
     }
   }, [currentPage]);
-  const [src, setSrc] = useState<StaticImageData>(destinationDesktop);
+
+  const [src, setSrc] = useState<StaticImageData>(currentPageImgs.desktop);
 
   const responsiveImg = function () {
     const width = $(window).width();
@@ -94,7 +95,7 @@ export default function BgImg() {
       src={src}
       alt="space"
       fill
-      className="-z-10 mb-28 object-cover object-top"
+      className="-z-10 mb-28 object-cover absolute h-full w-full"
       placeholder="blur"
     ></Image>
   );

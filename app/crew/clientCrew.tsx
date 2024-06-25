@@ -38,8 +38,8 @@ export default function ClientCrew({ membersData }: membersDataProps) {
 
   return (
     <>
-      <div className="grid md:grid-cols-[50%,1fr] md:pb-12 gap-12 xl:gap-0 md:h-[84dvh]">
-        <div className="flex flex-col justify-center relative gap-12 md:gap-0">
+      <div className="grid md:grid-cols-[50%,1fr] md:pb-12 gap-12 xl:gap-0 ">
+        <div className="flex flex-col justify-center relative gap-12 md:gap-0 sm:h-[58dvh]">
           <div className="flex flex-col gap-6 myGridEle">
             <typography.HeaderS style="text-gray-400">
               {crewMember.role}

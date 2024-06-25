@@ -25,8 +25,8 @@ export default function page() {
   return (
     <>
       <PageStateHandler>technology</PageStateHandler>
-      <section className="pb-24 text-center lg:text-start lg:h-[78dvh] lg:mx-auto lg:w-11/12 mt-14">
-        <div className="flex gap-3 mb-16 lg:mb-0">
+      <section className="pb-24 text-center lg:text-start lg:mx-auto lg:w-11/12 mt-14">
+        <div className="flex gap-3 mb-16 xl:mb-0">
           <typography.HeaderXS style="text-gray-400">03</typography.HeaderXS>
           <typography.HeaderXS>SPACE LAUNCH 101</typography.HeaderXS>
         </div>

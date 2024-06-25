@@ -53,7 +53,7 @@ export default function ClientDestination({
   }
 
   return (
-    <div className="grid md:grid-cols-[50%,1fr] xl:grid-cols-[58%,1fr] gap-12 xl:gap-0 h-[107dvh] sm:h-auto md:h-[60dvh] lg:h-auto">
+    <div className="grid md:grid-cols-[50%,1fr] xl:grid-cols-[58%,1fr] gap-12 xl:gap-0 ">
       <picture className="mx-auto sm:mx-0 xl:w-[70%] w-[50%] sm:w-auto myGridElemt">
         <Image
           src={destination.images.webp}
