@@ -1,0 +1,80 @@
+@mixin paginationDots {
+  width: 1rem;
+  height: 1rem;
+  transition: background 300ms;
+  cursor: pointer !important;
+
+  border-radius: 50%;
+  margin: 0 !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet {
+  @include paginationDots;
+  background-color: #9ca3af !important;
+
+  &:hover {
+    background-color: #d1d5db !important;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+  &:hover {
+    background-color: white !important;
+  }
+}
+
+.swiper-pagination {
+  position: absolute;
+  top: 66% !important;
+  display: flex;
+  align-items: start;
+  gap: 1.5rem;
+
+  width: auto !important;
+  height: 5% !important;
+  padding-top: 10px;
+  @media (max-width: 786px) {
+    top: 34% !important;
+    right: 50% !important;
+    transform: translateX(50%);
+    justify-content: center !important;
+    align-items: center;
+    padding-top: 0;
+  }
+}
+
+// Animation Text
+
+@keyframes moveDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// .swiper-slide-active .contentDescription,
+
+@mixin text-animation {
+  display: inline-block;
+  animation: moveDown 0.7s ease-in forwards;
+}
+
+.swiper-slide-active h2 {
+  @include text-animation();
+}
+
+.swiper-slide-active p {
+  @include text-animation();
+  opacity: 0;
+  animation-delay: 0.7s;
+}
+
+// .swiper-slide-active .contentDescription {
+//   animation-delay: 1s;
+// }

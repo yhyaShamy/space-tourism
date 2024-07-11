@@ -4,6 +4,7 @@ import typography from "../_components/typography";
 import data from "../_lib/data.json";
 import { imagesObj } from "../destination/page";
 import ClientCrew from "./clientCrew";
+import $ from "jquery";
 import type { Metadata } from "next";
 
 export interface Crew {
@@ -23,7 +24,10 @@ export default function page() {
   return (
     <>
       <PageStateHandler>crew</PageStateHandler>
-      <section className=" text-center md:text-start mx-auto w-11/12 mt-14">
+      <section
+        className=" text-center md:text-start mx-auto w-11/12 mt-14 cursor-grab "
+        id="crewSection"
+      >
         <div className="flex gap-3">
           <typography.HeaderXS style="text-slate-500 text-gray-400">
             02
