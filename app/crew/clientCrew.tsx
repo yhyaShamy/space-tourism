@@ -3,15 +3,10 @@ import React, { ReactElement, useEffect, useState } from "react";
 import "swiper/swiper-bundle.css";
 import "../crew/crew.scss";
 import typography from "../_components/typography";
-import $ from "jquery";
 import Image from "next/image";
-import { Crew } from "./page";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Pagination } from "swiper/modules";
-
-interface membersDataProps {
-  membersData: Crew[];
-}
+import { membersDataProps } from "../_interface/crew";
 
 export default function ClientCrew({ membersData }: membersDataProps) {
   return (

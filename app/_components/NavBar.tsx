@@ -8,7 +8,7 @@ import Link from "next/link";
 import hamburgerIcon from "../../public/assets/shared/icon-hamburger.svg";
 import closeIcon from "../../public/assets/shared/icon-close.svg";
 import $ from "jquery";
-import { useCurrentPage } from "./zustand/currentPageStore";
+import { usePathname } from "next/navigation";
 
 export default function NavBar() {
   // re-use nav items
@@ -17,8 +17,7 @@ export default function NavBar() {
   const activeClassName = ` h-full relative flex items-center after:absolute after:bg-white after:h-full after:right-0 after:w-1 sm:after:w-full sm:after:h-1 sm:after:bottom-0 gap-2 navItem after:transition-color after:duration-300`;
 
   // Handle active nav item
-  const { currentPage } = useCurrentPage();
-
+  const currentPage = usePathname().slice(1);
   function navItem(number: number | string, name: string) {
     return (
       <Link

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import Image, { StaticImageData } from "next/image";
-import { useCurrentPage } from "./zustand/currentPageStore";
 import homeDesktop from "../../public/assets/home/background-home-desktop.jpg";
 import homeTablet from "../../public/assets/home/background-home-tablet.jpg";
 import homeMobile from "../../public/assets/home/background-home-mobile.jpg";
@@ -18,11 +17,12 @@ import crewMobile from "../../public/assets/crew/background-crew-mobile.jpg";
 import technologyDesktop from "../../public/assets/technology/background-technology-desktop.jpg";
 import technologyTablet from "../../public/assets/technology/background-technology-tablet.jpg";
 import technologyMobile from "../../public/assets/technology/background-technology-mobile.jpg";
+import { usePathname } from "next/navigation";
 
 export default function Background() {
   // Get current page imgs
 
-  const { currentPage } = useCurrentPage();
+  const currentPage = usePathname().slice(1);
 
   interface PageImgs {
     name: string;
@@ -58,17 +58,13 @@ export default function Background() {
     },
   ];
 
-  const [currentPageImgs, setcurrentPageImgs] = useState<PageImgs>(
-    pagesImgs[0]
-  );
+  const currentPageImgs =
+    pagesImgs.find((pageImg) => pageImg.name == currentPage) || pagesImgs[0];
 
-  useEffect(() => {
-    if (currentPage) {
-      setcurrentPageImgs(
-        pagesImgs.filter((pageImg) => pageImg.name == currentPage)[0]
-      );
-    }
-  }, [currentPage]);
+  console.log(
+    pagesImgs.find((pageImg) => pageImg.name == currentPage)?.name ===
+      currentPageImgs.name
+  );
 
   const [src, setSrc] = useState<StaticImageData>(currentPageImgs.desktop);
 
@@ -88,7 +84,7 @@ export default function Background() {
   useEffect(() => {
     $(window).on("resize", responsiveImg);
     responsiveImg();
-  }, [currentPageImgs]);
+  }, [currentPage]);
 
   return (
     <Image

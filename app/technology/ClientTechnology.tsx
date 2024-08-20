@@ -1,39 +1,28 @@
 "use client";
 import React, { ReactElement, useEffect, useState } from "react";
 import typography from "../_components/typography";
-import { technologyData } from "./page";
 import $ from "jquery";
 import Image from "next/image";
+import {
+  handleClick,
+  NavBarProps,
+  technologyData,
+} from "../_interface/technology";
 
-interface tecnologyProp {
+interface technologyProp {
   data: technologyData[];
 }
 
-export default function ClientTechnology({ data }: tecnologyProp) {
+export default function ClientTechnology({ data }: technologyProp) {
   // Handle data
   const [technology, settechnology] = useState<technologyData>(data[0]);
+
   const handleClick = function (name: string) {
     $(".myGridEle").fadeOut(200, function () {
       $(".myGridEle").fadeIn(200);
       settechnology(data.filter((technology) => technology.name == name)[0]);
     });
   };
-  //   re-use navigate bar
-  function navItem(name: string, index: number): ReactElement {
-    const defaultClass =
-      "size-16 transition-shadow duration-300 shadow-[0px_0px_0px_2px_#9ca3af] hover:shadow-[0px_0px_0px_2px_#fff] rounded-full flex justify-center items-center cursor-pointer";
-    const activeClass =
-      "size-16 transition-shadow duration-300 shadow-[0px_0px_0px_2px_#fff] bg-white rounded-full flex justify-center items-center cursor-pointer text-dark";
-
-    return (
-      <li
-        className={technology.name == name ? activeClass : defaultClass}
-        onClick={() => handleClick(name)}
-      >
-        <typography.HeaderS style="leading-none">{index}</typography.HeaderS>
-      </li>
-    );
-  }
 
   // Check is window width more than 1024px for image design
 
@@ -48,9 +37,11 @@ export default function ClientTechnology({ data }: tecnologyProp) {
     <>
       <div className="grid grid-cols-1 lg:grid-cols-[55%,1fr] gap-16">
         <div className="flex flex-col lg:flex-row gap-12 self-center">
-          <ul className="flex lg:flex-col justify-center flex-row gap-8">
-            {data.map((technology, i) => navItem(technology.name, i + 1))}
-          </ul>
+          <NavBar
+            handleClick={handleClick}
+            technologyList={data}
+            technologyName={technology.name}
+          />
 
           <div className="flex flex-col gap-6 myGridEle">
             <typography.HeaderS style="text-gray-400">
@@ -79,5 +70,37 @@ export default function ClientTechnology({ data }: tecnologyProp) {
         </picture>
       </div>
     </>
+  );
+}
+
+//   re-use navigate bar
+function NavBar({
+  technologyList,
+  handleClick,
+  technologyName,
+}: NavBarProps): ReactElement {
+  const defaultClass =
+    "size-16 transition-shadow duration-300 shadow-[0px_0px_0px_2px_#9ca3af] hover:shadow-[0px_0px_0px_2px_#fff] rounded-full flex justify-center items-center cursor-pointer";
+  const activeClass =
+    "size-16 transition-shadow duration-300 shadow-[0px_0px_0px_2px_#fff] bg-white rounded-full flex justify-center items-center cursor-pointer text-dark";
+
+  return (
+    <ul className="flex lg:flex-col justify-center flex-row gap-8">
+      {technologyList.map((technology, i): ReactElement => {
+        return (
+          <li
+            className={
+              technologyName == technology.name ? activeClass : defaultClass
+            }
+            onClick={() => handleClick(technology.name)}
+            key={i}
+          >
+            <typography.HeaderS style="leading-none">
+              {1 + i}
+            </typography.HeaderS>
+          </li>
+        );
+      })}
+    </ul>
   );
 }

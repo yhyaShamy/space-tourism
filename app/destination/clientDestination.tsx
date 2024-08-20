@@ -3,12 +3,13 @@
 import React, { useState } from "react";
 import typography from "../_components/typography";
 import Image from "next/image";
-import { destinationObj } from "./page";
 import $ from "jquery";
-
-interface destinationProps {
-  destinationsData: destinationObj[];
-}
+import {
+  destinationObj,
+  destinationProps,
+  handleDestination,
+  NavBarProps,
+} from "../_interface/destination";
 
 export default function ClientDestination({
   destinationsData,
@@ -22,33 +23,6 @@ export default function ClientDestination({
   function handleDestination(name: string) {
     setdestination(
       destinationsData.filter((destination) => destination.name == name)[0]
-    );
-  }
-
-  const defaultClassName =
-    "cursor-pointer uppercase transition-colors sm:z-0 duration-300 hover:text-white pb-1 relative after:bg-white/0 after:right-[54%] hover:after:bg-gray-400 after:transition-colors after:duration-300 after:w-full after:h-1 after:absolute after:bottom-0 after:translate-x-1/2";
-
-  const activeClassName =
-    "cursor-pointer uppercase  relative after:absolute after:bg-white after:right-[54%] after:translate-x-1/2 after:transition-colors after:duration-300 after:w-[100%] after:h-1 after:bottom-0 text-white  navItem pb-1 supNavItem";
-
-  // Re-use nav bar
-  function navItem(name: string, i: number) {
-    return (
-      <li
-        id={name}
-        key={i}
-        className={
-          destination.name == name ? activeClassName : defaultClassName
-        }
-        onClick={(e) => {
-          $(".myGridElemt").fadeOut(200, () => {
-            $(".myGridElemt").fadeIn(200);
-            handleDestination(name);
-          });
-        }}
-      >
-        <typography.SubHeaderS>{name}</typography.SubHeaderS>
-      </li>
     );
   }
 
@@ -66,11 +40,11 @@ export default function ClientDestination({
         />
       </picture>
       <div className="text-lightBlue">
-        <ul className="flex gap-4 mb-20 justify-center md:justify-start">
-          {destinationsData.map((destinationData, i) =>
-            navItem(destinationData.name, i)
-          )}
-        </ul>
+        <NavBar
+          currentDestination={destination.name}
+          destinationData={destinationsData}
+          handleDestination={handleDestination}
+        />
         <div className="myGridElemt">
           <typography.HeaderL style="mb-14 text-white">
             {destination.name}
@@ -93,5 +67,44 @@ export default function ClientDestination({
         </div>
       </div>
     </div>
+  );
+}
+
+function NavBar({
+  destinationData,
+  handleDestination,
+  currentDestination,
+}: NavBarProps) {
+  const defaultClassName =
+    "cursor-pointer uppercase transition-colors sm:z-0 duration-300 hover:text-white pb-1 relative after:bg-white/0 after:right-[54%] hover:after:bg-gray-400 after:transition-colors after:duration-300 after:w-full after:h-1 after:absolute after:bottom-0 after:translate-x-1/2";
+
+  const activeClassName =
+    "cursor-pointer uppercase  relative after:absolute after:bg-white after:right-[54%] after:translate-x-1/2 after:transition-colors after:duration-300 after:w-[100%] after:h-1 after:bottom-0 text-white  navItem pb-1 supNavItem";
+
+  // Re-use nav bar
+  return (
+    <ul className="flex gap-4 mb-20 justify-center md:justify-start">
+      {destinationData.map((destination, i) => {
+        return (
+          <li
+            id={destination.name}
+            key={i}
+            className={
+              currentDestination == destination.name
+                ? activeClassName
+                : defaultClassName
+            }
+            onClick={(e) => {
+              $(".myGridElemt").fadeOut(200, () => {
+                $(".myGridElemt").fadeIn(200);
+                handleDestination(destination.name);
+              });
+            }}
+          >
+            <typography.SubHeaderS>{destination.name}</typography.SubHeaderS>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
